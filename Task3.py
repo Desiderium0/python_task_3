@@ -24,14 +24,27 @@ def intersection_area(ax1: int, ay1: int, ax2: int, ay2: int,
     else:
         return 0
 
+def union_area(ax1: int, ay1: int, ax2: int, ay2: int, 
+               bx1: int, by1: int, bx2: int, by2: int) -> int:
+    """
+    Вычисляет площадь объединения двух прямоугольников.
+    """
+    area1 = (ax2 - ax1) * (ay1 - ay2) # Первый прямоугольник
+    area2 = (bx2 - bx1) * (by1 - by2) # Второй прямоугольник
+    intersection = intersection_area(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2)
+    
+    return area1 + area2 - intersection
+
 def main(ax1: int, ay1: int, ax2: int, ay2: int, 
         bx1: int, by1: int, bx2: int, by2: int):
     print(f"Прямоугольник 1: ЛВ({ax1},{ay1}) ПН({ax2},{ay2})")
     print(f"Прямоугольник 2: ЛВ({bx1},{by1}) ПН({bx2},{by2})")
     
     intersection = intersection_area(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2)
+    union = union_area(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2)
     
     print(f"Площадь пересечения: {intersection}")
+    print(f"Площадь объединения: {union}")
 
 if __name__ == "__main__":
     ax1, ay1, ax2, ay2 = 0, 2, 4, 1
