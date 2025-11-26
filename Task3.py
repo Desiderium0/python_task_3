@@ -19,6 +19,16 @@ def intersection_area(x1: int, y1: int, x2: int, y2: int,
     else:
         return 0
 
+def union_area(x1: int, y1: int, x2: int, y2: int, 
+               x3: int, y3: int, x4: int, y4: int) -> int:
+
+    area1 = (x2 - x1) * (y1 - y2)
+    area2 = (x4 - x3) * (y3 - y4)
+
+    intersection = intersection_area(x1, y1, x2, y2, x3, y3, x4, y4)
+    
+    # Площадь объединения = сумма площадей - площадь пересечения
+    return area1 + area2 - intersection
 
 
 
@@ -28,3 +38,7 @@ if __name__ == "__main__":
     print(f"Прямоугольник 1: ЛВ({x1},{y1}) ПН({x2},{y2})")
     print(f"Прямоугольник 2: ЛВ({x3},{y3}) ПН({x4},{y4})")
     print(intersection_area(x1, y1, x2, y2, x3, y3, x4, y4))
+    
+    x1, y1, x2, y2 = 0, 3, 3, 0
+    x3, y3, x4, y4 = 1, 2, 2, 1
+    print(f"Вложенные: пересечение = {intersection_area(x1, y1, x2, y2, x3, y3, x4, y4)}")
